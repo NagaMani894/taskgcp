@@ -27,7 +27,8 @@ jobs:
         run: |
           GCLOUD_AUTH_KEY="${{ secrets.JSONFORGCP }}"
           PROJECT_ID="taskmani-376813"
-          gcloud auth activate-service-account --key-file="$GCLOUD_AUTH_KEY"
+          echo "$GCLOUD_AUTH_KEY" > /tmp/gcloud-auth.json
+          gcloud auth activate-service-account --key-file="/tmp/gcloud-auth.json"
           gcloud config set project "$PROJECT_ID"
           gcloud compute instances describe --zone us-west4-b instance-1 --format=json
      
