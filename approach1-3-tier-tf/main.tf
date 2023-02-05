@@ -39,7 +39,6 @@ resource "google_project_iam_member" "allbuild" {
 
 #The resource random_id generates random numbers that are intended to be used as unique identifiers for other resources.
 resource "random_id" "id" {
-  byte_length = 2
 }
 
 # The following command stores SQL host data in Cloud Secrets.
@@ -100,9 +99,7 @@ resource "google_cloud_run_service" "api" {
     }
   }
   autogenerate_revision_name = true
-  depends_on = [
-    null_resource.cloudbuild_api,
-  ]
+  
 }
 
 #The Service's controller will track the statuses of its owned Configuration and Route, reflecting their statuses and conditions as its own.
@@ -123,7 +120,6 @@ resource "google_cloud_run_service" "fe" {
       }
     }
   }
-  depends_on = [null_resource.cloudbuild_fe]
 }
 
 #Three different resources help you manage your IAM policy for Cloud Run Service.
