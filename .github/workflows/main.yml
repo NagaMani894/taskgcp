@@ -45,7 +45,7 @@ jobs:
           GOOGLE_CREDENTIALS: ${{ secrets.JSONFORGCP }}
       - name: terraform apply  in the dir
         if: ${{ failure() }}
-        run: cd approach1-3-tier-tf && terraform destory -auto-approve
+        run: cd approach1-3-tier-tf && terraform destroy -auto-approve
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.JSONFORGCP }}
       
