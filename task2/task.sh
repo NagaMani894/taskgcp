@@ -2,9 +2,9 @@
 
 # Function to retrieve metadata of an instance
 get_instance_metadata() {
-    local data_key="$1"
-    local metadata_url="http://metadata.google.internal/computeMetadata/v1/"
-    local headers="Metadata-Flavor: Google"
+    data_key="$1"
+    metadata_url="http://metadata.google.internal/computeMetadata/v1"
+    headers="Metadata-Flavor: Google"
 
     if [ -z "$data_key" ]; then
         # If no data key is provided, retrieve all metadata
@@ -17,3 +17,8 @@ get_instance_metadata() {
 
 # Call the function and format the output as JSON
 get_instance_metadata "$1" | jq '.'
+
+
+
+
+curl "http://metadata.google.internal/computeMetadata/v1/instance/?recursive=true&alt=json" -H "Metadata-Flavor: Google"
