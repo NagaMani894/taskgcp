@@ -72,7 +72,7 @@ resource "google_cloud_run_service" "api" {
     spec {
       service_account_name = google_service_account.runsa.email
       containers {
-        image = "nginx"  ################## --------- need to change to correct value ----------------------#####################
+        image = "tomcat"  ################## --------- need to change to correct value ----------------------#####################
         env {
           name = "db_host"
           value_from {
