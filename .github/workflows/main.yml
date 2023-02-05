@@ -39,5 +39,10 @@ jobs:
         
       - name: terraform init in the dir
         run: cd approach1-3-tier-tf && terraform init
+        
+      - name: terraform plan in the dir
+        run: cd approach1-3-tier-tf && terraform plan
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.JSONFORGCP }}
       
       
