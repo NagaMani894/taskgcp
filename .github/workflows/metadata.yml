@@ -25,6 +25,7 @@ jobs:
         uses: google-github-actions/setup-gcloud@v1.1.0
       - name: Run a multi-line script
         run: |
+          set -x
           GCLOUD_AUTH_KEY="${{ secrets.JSONFORGCP }}"
           PROJECT_ID="taskmani-376813"
           echo "$GCLOUD_AUTH_KEY" > /tmp/gcloud-auth.json
