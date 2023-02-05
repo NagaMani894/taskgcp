@@ -24,7 +24,10 @@ jobs:
       - name: Run a multi-line script
         run: |
           curl https://sdk.cloud.google.com | bash
-          gcloud auth activate-service-account --key-file=${{ secrets.JSONFORGCP }}
+          GCLOUD_AUTH_KEY="${{ secrets.JSONFORGCP }}"
+          PROJECT_ID="taskmani-376813"
+          gcloud auth activate-service-account --key-file="$GCLOUD_AUTH_KEY"
+          gcloud config set project "$PROJECT_ID"
           gcloud compute instances describe --zone us-west4-b instance-1 --format=json
           
           
