@@ -2,7 +2,7 @@ data "google_project" "project" {
   project_id = var.project_id
 }
 
-#Allows management of a single API service for a Google Cloud Platform project
+#Allows management of a single API service for a Google Cloud Platform projects
 
 resource "google_project_service" "all" {
   for_each           = toset(var.gcp_service_list)
