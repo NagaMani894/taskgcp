@@ -2,6 +2,8 @@ data "google_project" "project" {
   project_id = var.project_id
 }
 
+#Allows management of a single API service for a Google Cloud Platform project
+
 resource "google_project_service" "all" {
   for_each           = toset(var.gcp_service_list)
   project            = var.project_number
@@ -34,10 +36,12 @@ resource "google_project_iam_member" "allbuild" {
   depends_on = [google_project_service.all]
 }
 
+#The resource random_id generates random numbers that are intended to be used as unique identifiers for other resources.
 resource "random_id" "id" {
   byte_length = 2
 }
 
+# The following command stores SQL host data in Cloud Secrets.
 resource "google_secret_manager_secret" "sqlhost" {
   project = var.project_number
   replication {
@@ -47,6 +51,8 @@ resource "google_secret_manager_secret" "sqlhost" {
   depends_on = [google_project_service.all]
 }
 
+#A secret version resource.
+
 resource "google_secret_manager_secret_version" "sqlhost" {
   enabled     = true
   secret      = "projects/${var.project_number}/secrets/sqlhost"
@@ -54,6 +60,7 @@ resource "google_secret_manager_secret_version" "sqlhost" {
   depends_on  = [google_project_service.all, google_sql_database_instance.main, google_secret_manager_secret.sqlhost]
 }
 
+#The Service's controller will track the statuses of its owned Configuration and Route, reflecting their statuses and conditions as its own.
 
 resource "google_cloud_run_service" "api" {
   name     = "${var.basename}-api"
@@ -97,6 +104,7 @@ resource "google_cloud_run_service" "api" {
   ]
 }
 
+#The Service's controller will track the statuses of its owned Configuration and Route, reflecting their statuses and conditions as its own.
 
 resource "google_cloud_run_service" "fe" {
   name     = "${var.basename}-fe"
@@ -117,6 +125,7 @@ resource "google_cloud_run_service" "fe" {
   depends_on = [null_resource.cloudbuild_fe]
 }
 
+#Three different resources help you manage your IAM policy for Cloud Run Service.
 resource "google_cloud_run_service_iam_member" "noauth_api" {
   location = google_cloud_run_service.api.location
   project  = google_cloud_run_service.api.project
@@ -132,3 +141,4 @@ resource "google_cloud_run_service_iam_member" "noauth_fe" {
   role     = "roles/run.invoker"
   member   = "allUsers"
 }
+

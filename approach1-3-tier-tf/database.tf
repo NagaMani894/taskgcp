@@ -1,3 +1,4 @@
+#Creates a new Google SQL Database Instance
 resource "google_sql_database_instance" "main" {
   depends_on = [
     google_project_service.all,
