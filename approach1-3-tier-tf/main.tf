@@ -39,6 +39,7 @@ resource "google_project_iam_member" "allbuild" {
 
 #The resource random_id generates random numbers that are intended to be used as unique identifiers for other resources.
 resource "random_id" "id" {
+  byte_length = 2
 }
 
 # The following command stores SQL host data in Cloud Secrets.
