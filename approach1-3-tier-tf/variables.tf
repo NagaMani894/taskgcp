@@ -20,7 +20,7 @@ variable "zone" {
 
 variable "basename" {
   type = string
-  default = "taskmanigcp"
+  default = "taskgcpmani"
 }
 
 locals {
