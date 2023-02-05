@@ -29,7 +29,7 @@ resource "google_vpc_access_connector" "main" {
   provider       = google-beta
   project        = var.project_id
   name           = "${var.basename}-vpc-cx"
-  ip_cidr_range  = "10.8.0.0/28"
+  ip_cidr_range  = "10.8.0.0/24"
   network        = google_compute_network.main.id
   region         = var.region
   max_throughput = 300
