@@ -72,7 +72,7 @@ resource "google_cloud_run_service" "api" {
     spec {
       service_account_name = google_service_account.runsa.email
       containers {
-        image = "docker-image-Url"  ################## --------- need to change to correct value ----------------------#####################
+        image = "nginx"  ################## --------- need to change to correct value ----------------------#####################
         env {
           name = "db_host"
           value_from {
@@ -114,7 +114,7 @@ resource "google_cloud_run_service" "fe" {
     spec {
       service_account_name = google_service_account.runsa.email
       containers {
-        image = "docker-image-Url"  ################## --------- need to change to correct value ----------------------#####################
+        image = "nginx"  ################## --------- need to change to correct value ----------------------#####################
         ports {
           container_port = 80
         }

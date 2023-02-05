@@ -36,13 +36,16 @@ jobs:
           echo test, and deploy your project.
       - name: HashiCorp - Setup Terraform
         uses: hashicorp/setup-terraform@v2.0.3
-        
+      ## int  tf code   
       - name: terraform init in the dir
         run: cd approach1-3-tier-tf && terraform init
-        
+      ## plan tf code   
       - name: terraform plan in the dir
         run: cd approach1-3-tier-tf && terraform plan
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.JSONFORGCP }}
-      
-      
+      ## applying tf code     
+      - name: terraform plan in the dir
+        run: cd approach1-3-tier-tf && terraform apply
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.JSONFORGCP }}
