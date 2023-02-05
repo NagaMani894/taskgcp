@@ -46,6 +46,6 @@ jobs:
           GOOGLE_CREDENTIALS: ${{ secrets.JSONFORGCP }}
       ## applying tf code     
       - name: terraform apply  in the dir
-        run: cd approach1-3-tier-tf && terraform apply -auto-approve
+        run: cd approach1-3-tier-tf && terraform destory -auto-approve
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.JSONFORGCP }}
